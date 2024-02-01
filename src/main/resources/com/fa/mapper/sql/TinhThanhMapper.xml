@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fa.mapper.TinhThanhMapper">
+
+	<select id="getAll" resultMap="BaseResultMap">
+  		select * from TinhThanh
+  	</select>
+	
+	<resultMap id="BaseResultMap" type="com.fa.entity.TinhThanh">
+		<id column="maTT" jdbcType="INTEGER" property="maTT" />
+		<result column="tenTT" jdbcType="NVARCHAR" property="tenTT" />
+		<result column="password" jdbcType="NVARCHAR" property="password" />
+	</resultMap>
+</mapper>

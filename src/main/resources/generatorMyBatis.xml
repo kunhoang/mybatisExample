@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration 
+   PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry
+		location="/Program Files/IBM/SQLLIB/java/db2java.zip" />
+
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<jdbcConnection
+			driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+			connectionURL="jdbc:sqlserver://MSI:1433;databaseName=DemoSpring;encrypt=true;trustServerCertificate=true;"
+			userId="sa" password="02022001">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.fa.entity"
+			targetProject="TestMyBatisSpring" />
+
+		<sqlMapGenerator targetPackage="com.fa.mapper.sql"
+			targetProject="TestMyBatisSpring/src/main/resources" />
+
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.fa.mapper"
+			targetProject="TestMyBatisSpring" />
+
+		<table tableName="Customer" domainObjectName="Customer">
+
+		</table>
+
+	</context>
+</generatorConfiguration>

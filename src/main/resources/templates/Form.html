@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/head.html :: head(Add)">
+</head>
+
+<body class="container-fluid d-flex flex-column">
+	<header th:insert="layout/header.html :: header"> </header>
+	<main class="col-6 my-5">
+		<h2 th:text="${action} == 'insert' ? Insert : Update" class="text-center"></h2>
+		<form th:object="${customer}">
+			<div class="form-group" style="display: none;">
+				<label for="id">ID</label> <input th:field="*{id}" type="text" id="id" name="id" value=""
+					class="form-control" />
+			</div>
+			<div class="form-group">
+				<label for="name">Name</label> <input th:field="*{name}" type="text" id="name" name="name" value=""
+					class="form-control" /> <span th:errors="*{name}" class="text-danger"></span>
+			</div>
+			<!-- <div class="form-group">
+                <label for="country">Country</label>
+                <input th:field="*{country}" type="text" id="country" name="country" value="" class="form-control" />
+            </div> -->
+			<div class="form-group">
+				<label for="age">Age</label> <input th:field="*{age}" type="number" id="age" name="age" value=""
+					class="form-control" /> <span th:errors="*{age}" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label for="age">BirthDay</label> <input th:field="*{birth}" type="date" id="birth" name="age" value=""
+					class="form-control" />
+				<span th:errors="*{birth}" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label>Fee</label>
+				<div id="radioSex">
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sex1" th:value="1" th:field="*{sex}" class="custom-control-input">
+						<label class="custom-control-label" for="sex1">Toggle
+							this custom radio</label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="sex2" th:value="0" th:field="*{sex}" class="custom-control-input">
+						<label class="custom-control-label" for="sex2">Or
+							toggle this other custom radio</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="">Ma TT</label> <select class="custom-select" id="maTT" th:field="*{maTT}">
+					<!-- <div th:each="each : ${each}">
+                        <option th:if="${each} == 2" th:text="Hello"></option>
+                        <option th:if="${each} == 4" th:text="Hi"></option>
+                        <option th:if="${each} == 1" th:text="Cut"></option>
+                    </div> -->
+					<div th:each="each : ${tt}">
+						<option th:value="${each.maTT}" th:text="${each.tenTT}"></option>
+					</div>
+				</select>
+			</div>
+		</form>
+		<!-- <div class="form-group d-flex justify-content-center my-4">
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div> -->
+
+		<div class="d-flex justify-content-center my-4">
+			<button type="button" class="btn btn-primary" id="confirm" data-toggle="modal"
+				data-target="#exampleModal">Confirm</button>
+		</div>
+
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form th:action="${action} == 'insert' ? @{/save} : @{/update}" method="POST"
+						th:object="${customer}">
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="">Name</label> <input th:field="*{name}" type="text" id="cName" value=""
+									name="cName" class="form-control" readonly />
+							</div>
+							<div class="form-group">
+								<label for="">Age</label> <input th:field="*{age}" type="text" id="cAge" value=""
+									name="cAge" class="form-control" readonly />
+							</div>
+							<div class="form-group">
+								<label for="">BirthDay</label> <input th:field="*{birth}" type="text" id="cBirth"
+									value="" name="cAge" class="form-control" readonly />
+							</div>
+							<div class="form-group">
+								<label for="">MaTT</label> <input th:field="*{maTT}" type="text" id="cMaTT" value=""
+									name="cMaTT" class="form-control" readonly />
+							</div>
+							<div class="form-group">
+								<label for="">Sex</label> <input th:field="*{sex}" type="text" id="cSex" value=""
+									 class="form-control" readonly />
+							</div>
+							<div class="form-group" style="display: none;">
+								<label for="">ID</label> <input th:field="*{id}" type="text" id="cID" value=""
+									name="cID" class="form-control" readonly />
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+							<input type="submit" value="Save" class="btn btn-primary" />
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+		<!-- </form> -->
+
+
+	</main>
+	<footer th:insert="layout/footer.html :: footer"> </footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+	crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		// ${()}
+
+		$("#confirm").click(function () {
+			// if ($("#sex1").prop("checked", true)) {
+			// 	$("#cSex").val('1');
+			// } 
+			// if ($("#sex2").prop("checked", true)) {
+			// 	$("#cSex").val('0');
+			// }
+			$("#cID").val($("#id").val());
+			$("#cName").val($("#name").val());
+			$("#cAge").val($("#age").val());
+			$("#cBirth").val($("#birth").val());
+			$("#cMaTT").val($("#maTT").val());
+
+		})
+	})
+</script>
+
+</html>

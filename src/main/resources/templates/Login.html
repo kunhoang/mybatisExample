@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/head.html :: head(Add)">
+    </head>
+
+<body class="container-fluid d-flex flex-column">
+    <header th:insert="layout/header.html :: header">
+
+	</header>
+    <main class="col-6 my-5">
+        <h2 th:text="Login" class="text-center"></h2>
+        <span th:text="${msg}" class="text-danger d-flex justify-content-center"></span>
+        <form th:action="@{/login}" method="POST" th:object="${tinhthanh}">
+            <div class="form-group">
+                <label for="name">Username</label>
+                <input th:field="*{tenTT}" type="text" id="name" name="name" value="" class="form-control" />
+            </div>
+            <!-- <div class="form-group">
+                <label for="country">Country</label>
+                <input th:field="*{country}" type="text" id="country" name="country" value="" class="form-control" />
+            </div> -->
+            <div class="form-group">
+                <label for="age">password</label>
+                <input th:field="*{password}" type="password" id="age" name="age" value="" class="form-control" />
+            </div>
+            <div class="form-group d-flex justify-content-center my-4">
+                <input type="submit" value="Login" class="btn btn-success" />
+            </div>
+        </form>
+    </main>
+    <footer th:insert="layout/footer.html :: footer">
+
+	</footer>
+</body>
+</html>
